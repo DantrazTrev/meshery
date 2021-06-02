@@ -85,7 +85,7 @@ function generatePerformanceProfile(data) {
 
 // =============================== PERFORMANCE COMPONENT =======================
 
-const loadGenerators = ["fortio", "wrk2", "nighthawk"];
+const loadGenerators = [{name:"fortio",info:"Fortio is a fast, small (3Mb docker image, minimal dependencies), reusable, embeddable go library as well as a command line tool and server process, the server includes a simple web UI and graphical representation of the results (both a single latency graph and a multiple results comparative min, max, avg, qps and percentiles graphs)."},{name:"wrk2",info:"It is a modern HTTP benchmarking tool capable of generating significant load when run on a single multi-core CPU. It combines a multithreaded design with scalable event notification systems such as epoll and kqueue."}, {name:"nighthawk",info:"NightHawk is an L7 (HTTP/HTTPS/HTTP2) performance characterization tool, it currently provides a simple test server which is capable of generating dynamic response sizes, as well as inject delays,A simple test server which is capable of generating dynamic response sizes, as well as inject delays."}];
 
 const styles = (theme) => ({
   root: {
@@ -933,8 +933,8 @@ class MesheryPerformanceComponent extends React.Component {
                     onChange={this.handleChange("loadGenerator")}
                     row
                   >
-                    {loadGenerators.map((lg) => (
-                      <FormControlLabel value={lg} control={<Radio color="primary" />} label={lg} />
+                    {loadGenerators.map(({name,info}) => (
+                      <FormControlLabel value={name} control={<Tooltip title={info}><Radio color="primary" /></Tooltip>} label={name} />
                     ))}
                   </RadioGroup>
                 </FormControl>
